@@ -1,0 +1,3 @@
+This is a random license file.
+You don't have to read this to continue installing the package.
+You can skip this because it has nothing important.

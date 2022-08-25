@@ -1,0 +1,4 @@
+#define bottle_detector_VERSION_MAJOR @bottle_detector_VERSION_MAJOR@
+#define bottle_detector_VERSION_MINOR @bottle_detector_VERSION_MINOR@
+
+#cmakedefine USE_D
