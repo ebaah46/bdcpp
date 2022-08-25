@@ -1,0 +1,1 @@
+add_library(detector detector_algo.cpp detector_algo.h)
