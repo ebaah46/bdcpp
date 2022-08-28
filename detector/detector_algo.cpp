@@ -6,10 +6,7 @@
 #include <string>
 #include <map>
 #include <opencv2/core.hpp>
-/*#include <opencv2/imgcodecs.hpp>
-#include <opencv2/highgui.hpp>*/
 #include <opencv2/imgproc.hpp>
-//#include <boost/format.hpp>
 #include <fmt/format.h>
 
 template<> std::map<std::string ,std::string> Detector_Algo<cv::Mat>::houghCircles(cv::Mat& image, cv::Mat& originalImage, std::string &file) {
