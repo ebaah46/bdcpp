@@ -9,9 +9,8 @@ option (USE_D "A library to detect bottles in a crate." ON)
 message("NO message")
 if (USE_D)
     add_subdirectory(detector)
+    list(APPEND EXTRA_INCLUDES detector)
     list(APPEND EXTRA_LIBS detector)
-    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/detector")
-    message("nothing here")
 endif ()
 
 configure_file(bd_config.h.in bd_config.h)
@@ -43,22 +42,38 @@ endif ()
 
 add_subdirectory(external/glfw/)
 
+#find_package(OpenCV REQUIRED)
+
+
 target_include_directories(${PROJECT_NAME}
         PUBLIC external/glfw/include
         ${EXTRA_INCLUDES}
+        PUBLIC ${OpenCV_INCLUDE_DIRS}
         )
 target_link_directories(${PROJECT_NAME}
         PRIVATE external/glfw/src
-        ${EXTRA_LIBS}
+        PUBLIC ${EXTRA_LIBS}
         )
 
-target_link_libraries(${PROJECT_NAME} detector_algo glfw)
+target_link_libraries(${PROJECT_NAME} detector_algo  ${OpenCV_LIBS} glfw)
+
+#find_library(opcv OpenCV NAMES opencv OpenCv Opencv DOC "opencv library for image manipulation" )
+
+#
+#if(${opcv} STREQUAL opcv-NOTFOUND)
+#    message(FATAL_ERROR "Could not find OpenCv")
+#else()
+#    message("Found it!")
+#endif()
+
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/bd_config.h" DESTINATION include)
+
+#[[
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
 set(CPACK_PACKAGE_VERSION_MAJOR ${bottle_detector_VERSION_MAJOR})
 SET(CPACK_PACKAGE_VERSION_MINOR ${bottle_detector_VERSION_MINOR})
-INCLUDE(CPack)
+INCLUDE(CPack)]]

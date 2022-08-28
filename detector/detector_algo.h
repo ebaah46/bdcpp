@@ -4,15 +4,14 @@
 
 #ifndef BOTTLE_DETECTOR_DETECTOR_ALGO_H
 #define BOTTLE_DETECTOR_DETECTOR_ALGO_H
+#include <string>
+#include <map>
 
-namespace detector {
-
-    class Detector_Algo {
+template<class T>
+class Detector_Algo {
     public:
-        static void doNothing();
+       static std::map<std::string ,std::string> houghCircles(T& image, T& originalImage, std::string& path);
+};
 
-    };
-
-} // detector
 
 #endif //BOTTLE_DETECTOR_DETECTOR_ALGO_H
